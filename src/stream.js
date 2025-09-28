@@ -48,6 +48,19 @@ export function createStreamGraph(data, options = {}) {
       return dateA - dateB;
     });
 
+  // Calculate category order by total values (descending)
+  const categoryTotals = d3.rollup(
+    sortedData,
+    v => d3.sum(v, d => d.value),
+    d => d.category
+  );
+
+  const categoryOrder = Array.from(categoryTotals.entries())
+    .sort((a, b) => b[1] - a[1]) // Sort by total value descending
+    .map(d => d[0]);
+
+  console.log("[Stream] Category order by total value:", categoryOrder);
+
 
   console.log("[Stream] Sorted data sample:", sortedData.slice(0, 3));
 
@@ -82,6 +95,7 @@ export function createStreamGraph(data, options = {}) {
       color: {
         legend: true,
         scheme: colorScheme,
+        domain: categoryOrder, // Use value-based ordering
         columns: width > 600 ? 6 : 3, // Responsive legend columns
         width: width > 600 ? undefined : Math.min(200, width * 0.8) // Constrain legend width on small screens
       },
@@ -108,7 +122,9 @@ export function createStreamGraph(data, options = {}) {
                     const g = d3.select(context.ownerSVGElement).append("g");
                     const [i] = index;
                     if (i !== undefined) {
-                      const data = values.title[i].filter(d => d.value > 0);
+                      const data = values.title[i]
+                        .filter(d => d.value > 0)
+                        .sort((a, b) => b.value - a.value); // Sort tooltip data by value descending
                       const tooltipX = Math.min(
                         values.x1[i],
                         dimensions.width - dimensions.marginRight - 280

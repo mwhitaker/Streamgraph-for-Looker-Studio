@@ -76,11 +76,26 @@ function transformLookerInput(input) {
           if (fieldName) {
             if (fieldName.toLowerCase().includes('date')) {
               result.date = LOCAL ? new Date(value) : parseDate(value);
-            } else if (fieldName.toLowerCase().includes('category') || fieldName.toLowerCase().includes('industry')) {
+            } else if (
+              fieldName.toLowerCase().includes('category') ||
+              fieldName.toLowerCase().includes('industry') ||
+              fieldName.toLowerCase().includes('sector') ||
+              fieldName.toLowerCase().includes('source') ||
+              fieldName.toLowerCase().includes('department') ||
+              fieldName.toLowerCase().includes('agency')
+            ) {
               result.category = value;
             } else if (fieldName.toLowerCase().includes('other') || fieldName.toLowerCase().includes('sex') || fieldName.toLowerCase().includes('gender')) {
               result.other = value;
-            } else if (fieldName.toLowerCase().includes('value') || fieldName.toLowerCase().includes('unemployed')) {
+            } else if (
+              fieldName.toLowerCase().includes('value') ||
+              fieldName.toLowerCase().includes('unemployed') ||
+              fieldName.toLowerCase().includes('emissions') ||
+              fieldName.toLowerCase().includes('generation') ||
+              fieldName.toLowerCase().includes('spending') ||
+              fieldName.toLowerCase().includes('budget') ||
+              fieldName.toLowerCase().includes('outlays')
+            ) {
               const numValue = typeof value === 'string' ? parseFloat(value) : value;
               result.value = isNaN(numValue) ? 0 : numValue;
             }
@@ -454,7 +469,11 @@ function detectColumnMappings(columns) {
   );
 
   // Detect category column (primary dimension - usually the main categorical variable)
-  const categoryPatterns = ['category', 'group', 'type', 'class', 'name'];
+  const categoryPatterns = [
+    'category', 'group', 'type', 'class', 'name',
+    'sector', 'source', 'department', 'agency',    // Public sector specific patterns
+    'industry', 'region', 'state', 'division'     // Additional government data patterns
+  ];
   mappings.category = columns.find((_, i) =>
     categoryPatterns.some(pattern => lowerColumns[i].includes(pattern))
   );
@@ -466,7 +485,12 @@ function detectColumnMappings(columns) {
   );
 
   // Detect value column
-  const valuePatterns = ['value', 'amount', 'count', 'number', 'prop', 'rate', 'percent'];
+  const valuePatterns = [
+    'value', 'amount', 'count', 'number', 'prop', 'rate', 'percent',
+    'emissions', 'generation', 'spending', 'budget', 'outlays',    // Public sector specific patterns
+    'production', 'consumption', 'revenue', 'expenditure', 'cost', // Economic patterns
+    'gwh', 'mwh', 'kwh', 'btu', 'metric_tons', 'billion'         // Unit-based patterns
+  ];
   mappings.value = columns.find((_, i) =>
     valuePatterns.some(pattern => lowerColumns[i].includes(pattern))
   );

@@ -37,3 +37,9 @@ upload_to_gcp.sh
 public/manifest_dev.json
 data/name-counts.csv
 data/baby-names.csv
+data/eia-renewable-generation.csv
+data/federal-budget-by-department.csv
+data/gsoy_sample_csv.csv
+data/MER_T01_03.csv
+scripts/processEnergyData.js
+src/data/
