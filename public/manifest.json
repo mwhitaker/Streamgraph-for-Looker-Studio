@@ -1,0 +1,23 @@
+{
+  "name": "Michael Whitaker",
+  "organization": "Michael Whitaker",
+  "description": "Stream Graph",
+  "organizationUrl": "https://www.michaelwhitaker.com/",
+  "supportUrl": "https://www.michaelwhitaker.com/posts/2025-05-13-looker-stream-graph/",
+  "privacyPolicyUrl": "https://www.michaelwhitaker.com/privacy-policy/",
+  "termsOfServiceUrl": "https://www.michaelwhitaker.com/terms-of-service/",
+  "devMode": true,
+  "components": [
+    {
+      "id": "stream-graph-hack",
+      "name": "Stream Graph",
+      "description": "A modern Stream Graph visualization based on Observable Plot",
+      "iconUrl": "https://storage.googleapis.com/analytics_buddy_viz/stream-graph-hack/streamgraph-icon.png",
+      "resource": {
+        "js": "gs://analytics_buddy_viz/stream-graph-hack/index.js",
+        "config": "gs://analytics_buddy_viz/stream-graph-hack/index.json",
+        "css": "gs://analytics_buddy_viz/stream-graph-hack/index.css"
+      }
+    }
+  ]
+}

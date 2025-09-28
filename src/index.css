@@ -1,0 +1,119 @@
+:root {
+    --monospace: Menlo, Consolas, monospace;
+    --monospace-font: 14px/1.5 var(--monospace);
+    --serif: "Source Serif Pro", "Iowan Old Style", "Apple Garamond", "Palatino Linotype", "Times New Roman", "Droid Serif", Times, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --sans-serif: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+    --theme-blue: #4269d0;
+    --theme-green: #3ca951;
+    --theme-red: #ff725c;
+    --theme-yellow: #efb118
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--theme-background);
+    color: var(--theme-foreground)
+}
+
+body {
+    font: 17px/1.5 var(--serif);
+    margin: 0
+}
+
+/* Stream graph specific styles */
+.stream-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    padding: 0.2rem 1rem 1rem 1rem;
+    background-color: var(--theme-background);
+    color: var(--theme-foreground);
+}
+
+.stream-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--theme-foreground);
+}
+
+.stream-chart {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--theme-background);
+}
+
+.stream-chart svg {
+    overflow: visible !important;
+}
+
+/* Apply background color to all Plot.js elements */
+[class*="plot-"],
+[class*="plot-"] *,
+.plot-d6a7b5-figure,
+.plot-d6a7b5-swatches,
+.plot-d6a7b5-swatches-wrap,
+.plot-d6a7b5-swatch {
+    background-color: var(--theme-background) !important;
+    color: var(--theme-foreground) !important;
+}
+
+/* Ensure the main SVG container uses the background color */
+svg.plot-d6a7b5 {
+    background-color: var(--theme-background) !important;
+}
+
+@media (min-width: 768px) {
+    .stream-container {
+        min-height: 600px;
+    }
+}
+
+/* Keep essential Observable theme styles */
+.plot-d6a7b5 {
+    --plot-background: var(--theme-background)
+}
+
+/* Color scheme definitions */
+@media (prefers-color-scheme: light) {
+    :root {
+        --theme-background-b: color-mix(in srgb, var(--theme-foreground) 7%, var(--theme-background-a));
+        --theme-background: var(--theme-background-a);
+        --theme-background-alt: var(--theme-background-b);
+        --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-a));
+        --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-a));
+        --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-a));
+        --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-a));
+        --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-a));
+        color-scheme: light;
+        --theme-foreground: #31415c;
+        --theme-foreground-focus: #3b5fc0;
+        --theme-background-a: #ffffff
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --theme-background-a: color-mix(in srgb, var(--theme-foreground) 4%, var(--theme-background-b));
+        --theme-background: var(--theme-background-a);
+        --theme-background-alt: var(--theme-background-b);
+        --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-b));
+        --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-b));
+        --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-b));
+        --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-b));
+        --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-b));
+        color-scheme: dark;
+        --theme-foreground: #dfdfd6;
+        --theme-foreground-focus: oklch(.712564 .257662 265.758);
+        --theme-background-b: #161616
+    }
+}

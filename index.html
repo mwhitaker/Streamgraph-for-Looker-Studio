@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Graph Visualization - Development</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        #visualization {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .sample-data {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stream Graph Visualization - Development Preview</h1>
+
+    <div class="sample-data">
+        <h3>Sample Data Structure:</h3>
+        <p>This visualization expects CSV data with three columns:</p>
+        <ul>
+            <li><strong>Date column:</strong> Contains 'date', 'time', 'year', 'month', or 'day' in the name</li>
+            <li><strong>Category column:</strong> Contains 'category', 'sex', 'gender', 'group', 'type', or 'name' in the name</li>
+            <li><strong>Value column:</strong> Contains 'value', 'count', 'amount', 'prop', 'rate', or 'percent' in the name</li>
+        </ul>
+        <p>Currently configured to load: <code>data/babynames.csv</code> (primary) or <code>data/unemployment.csv</code> (fallback)</p>
+        <p><strong>To add your own CSV file:</strong></p>
+        <ol>
+            <li>Place your CSV file in the <code>data/</code> directory</li>
+            <li>Edit <code>src/config.js</code> and add your file path to <code>sampleDataPaths</code> array</li>
+            <li>Restart the development server with <code>npm run dev</code></li>
+        </ol>
+    </div>
+
+    <div id="visualization">
+        <!-- Stream graph will be rendered here -->
+    </div>
+
+    <script type="module">
+        // The visualization automatically loads when imported in LOCAL mode
+        import './src/index.js';
+    </script>
+</body>
+</html>
