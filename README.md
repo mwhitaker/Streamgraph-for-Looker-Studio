@@ -2,6 +2,11 @@
 
 A custom stream graph visualization component for Looker Studio that displays time-series data as flowing, layered streams.
 
+## Live demo
+
+https://lookerstudio.google.com/reporting/aa1fb699-44e1-488c-a13c-1d288d8dc379
+
+
 ## Features
 
 - Interactive stream graph visualization using Observable Plot
